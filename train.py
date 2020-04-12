@@ -7,7 +7,7 @@ import os, shutil, re
 import math
 
 from random import shuffle
-from scipy.misc import imresize
+from PIL import Image
 import scipy.io as io
 
 import matplotlib.pyplot as plt
@@ -820,7 +820,7 @@ class BCN:
                     xyz_total_gt = xyz_total_gt[art_select_,:]
 
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                    image = imresize(image, [self.IM_ROWS, self.IM_COLS])
+                    image = np.array(Image.fromarray(image).resize([self.IM_ROWS, self.IM_COLS]))
 
                     image = np.reshape(image, (1, self.IM_ROWS, self.IM_COLS, 3)) / 255.
                     r = sess.run([net_output], feed_dict={ image_placeholder: image})
