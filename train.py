@@ -3,7 +3,9 @@ import tensorflow as tf
 import numpy as np
 
 import cv2
-import os, shutil, re
+import os
+import shutil
+import re
 import math
 
 from random import shuffle
@@ -18,9 +20,18 @@ from mpl_toolkits.mplot3d import Axes3D
 
 class BCN:
 
-    def __init__(self, restore):
-        self.global_path = './'
-        self.data_dir = '/home/ivan/TF/Data3D/'
+    def __init__(self, restore, data_dir='./Data3D'):
+        """
+
+        :param restore: Restore BCN - or not
+        :param data_dir: Path to data directory
+        """
+
+        if not data_dir:
+            data_dir = './Data3D'
+
+        self.global_path = os.path.abspath('./') + '/'
+        self.data_dir = os.path.abspath(data_dir) + '/'  # Enforce ending with "/"
 
         self.restore = restore
         if self.restore:
