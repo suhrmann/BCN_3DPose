@@ -33,23 +33,21 @@ class BCN:
         self.global_path = os.path.abspath('./') + '/'
         self.data_dir = os.path.abspath(data_dir) + '/'  # Enforce ending with "/"
 
+        # Build paths
         self.restore = restore
-        if self.restore:
-            self.model_name = 'BCN_3D'
-            self.checkpoint = self.global_path + 'Models/Model_' + self.model_name + '/model.ckpt'
-            self.log_dir = self.global_path + '/logs/' + self.model_name
-            if not os.path.exists(self.global_path + 'temp'):
-                os.makedirs(self.global_path + 'temp')
+        self.model_name = 'BCN_3D'
+        self.checkpoint = self.global_path + 'Models/Model_' + self.model_name + '/model.ckpt'
+        self.log_dir = self.global_path + '/logs/' + self.model_name
 
-        else:
-            self.model_name = 'BCN_3D'
-            if not os.path.exists(self.global_path + 'Models/Model_' + self.model_name):
-                os.makedirs(self.global_path + 'Models/Model_' + self.model_name)
-            self.checkpoint = self.global_path + 'Models/Model_' + self.model_name + '/model.ckpt'
+        # Create directories if not exist
+        if not os.path.exists(self.global_path + 'Models/Model_' + self.model_name):
+            os.makedirs(self.global_path + 'Models/Model_' + self.model_name)
 
-            self.log_dir = self.global_path + '/logs/' + self.model_name
-            if not os.path.exists(self.log_dir):
-                os.makedirs(self.log_dir)
+        if not os.path.exists(self.log_dir):
+            os.makedirs(self.log_dir)
+
+        if not os.path.exists(self.global_path + 'temp'):
+            os.makedirs(self.global_path + 'temp')
 
         # Training hyperparameters
 
