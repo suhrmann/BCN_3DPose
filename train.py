@@ -910,7 +910,7 @@ class BCN:
                     xyz_total_gt = xyz_total_gt[art_select_, :]
 
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-                    image = imresize(image, [self.IM_ROWS, self.IM_COLS])
+                    image = np.array(Image.fromarray(image).resize([self.IM_ROWS, self.IM_COLS]))
                     plt.clf()
                     ax1 = fig.add_subplot(131)
                     ax1.imshow(image)
@@ -936,8 +936,8 @@ class BCN:
                             child = child[0]
                             for j in range(len(child)):
                                 seg = []
-                                P2 = xyz_total[i, :]
-                                P1 = xyz_total[child[j] - 1, :]
+                                P2 = xyz_total[i, :].flatten()
+                                P1 = xyz_total[child[j] - 1, :].flatten()
                                 ax.plot([P1[0], P2[0]], [P1[1], P2[1]], zs=[P1[2], P2[2]])
                         # ax.hold(True)
 
@@ -963,8 +963,8 @@ class BCN:
                             child = child[0]
                             for j in range(len(child)):
                                 seg = []
-                                P2 = xyz_total_gt[i, :]
-                                P1 = xyz_total_gt[child[j] - 1, :]
+                                P2 = xyz_total_gt[i, :].flatten()
+                                P1 = xyz_total_gt[child[j] - 1, :].flatten()
                                 ax2.plot([P1[0], P2[0]], [P1[1], P2[1]], zs=[P1[2], P2[2]])
 
                     # ax1.scatter(xyz_total_gt[:, 0], xyz_total_gt[:, 1], xyz_total_gt[:, 2], s=3, c=None, depthshade=True)
@@ -983,5 +983,6 @@ class BCN:
                     # l.set_data(x0, y0)
                     writer.grab_frame()
                     # Nos quedamos solo con el primer canal y quitamos las dos dimensiones que no nos interesan (batch y canales) usando reshape
+                    # We are left with only the first channel and remove the two dimensions that we are not interested in (batch and channels) using reshape (Google Translator)
         sess.close()
         return 0
