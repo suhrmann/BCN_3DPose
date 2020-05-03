@@ -9,6 +9,45 @@ https://www.sciencedirect.com/science/article/pii/S092523121931522X
 
 # Run
 
+### Setup
+Extract contents of 
+ - ``Data3D.zip`` to project root (see [Download Dataset](#download-dataset))
+ - ``Model.zip`` to ``Models/Model_BCN_3D`` (see [Download Trained Model](#download-trained-model))
+
+**Expected structure:**
+```bash
+$ tree
+BCN_3DPose
+├── Data3D -> ../Data3D
+│   ├── train
+│   ├── train2d
+│   ├── train2d_bb
+│   ├── train_bg
+│   ├── train_bg17
+│   ├── validation
+│   ├── validation2d
+│   ├── validation2d_bb
+│   ├── validation_bg
+│   └── validation_bg17
+├── LICENSE
+├── main.py
+├── Models
+│   └── Model_BCN_3D -> ../../Model
+│       ├── checkpoint
+│       ├── model.ckpt.data-00000-of-00001
+│       ├── model.ckpt.index
+│       ├── model.ckpt.meta
+│       ├── TOTAL_by_activity.npy
+│       └── TOTAL.npy
+├── plotALL.py
+├── README.md
+├── train.py
+└── utils
+    ├── children_b.mat
+    └── children.mat
+
+```
+
 ### Training
 ```bash
 python main.py train
