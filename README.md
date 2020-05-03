@@ -6,14 +6,23 @@ https://www.sciencedirect.com/science/article/pii/S092523121931522X
 **_click on the image below for a video demo_**
 [![Watch the video](https://img.youtube.com/vi/cJsPnm-T9cA/maxresdefault.jpg)](https://youtu.be/cJsPnm-T9cA)
 
-# Training
+
+# Run
+
+### Training
+```bash
 python main.py train
+```
 
-# Test
+### Test
+```bash
 python main.py test
+```
 
-# Video Test
+### Video Test
+```bash
 python main.py test_video
+```
 
 
 # Download Dataset
