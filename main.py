@@ -2,7 +2,7 @@
 
 import sys
 from os import path
-from train import BCN
+from bcn import BCN
 
 
 def main():
