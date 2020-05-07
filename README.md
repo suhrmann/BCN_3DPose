@@ -99,3 +99,21 @@ Project Repository comes with:
     ```bash
     conda install opencv scipy Pillow matplotlib tqdm
     ```
+
+
+### FAQ
+
+ - **``ffmpeg`` missing** <br>
+     Replace conda ``ffmpeg`` with built-in ``ffmpeg`` of Ubuntu
+     
+    ```bash
+    # "disable" conda ffmpeg 
+    which ffmpeg  # -> Output: /home/simon/.conda/envs/OpenCV/bin/ffmpeg
+    cd /home/simon/.conda/envs/OpenCV/bin
+    mv ffmpeg ffmpeg_BAK
+    # Replace with Ubuntu ffmpeg
+    which ffmpeg  # Expecting path to Ubuntu ffmpeg - Output: /usr/bin/ffmpeg
+    ln -s /usr/bin/ffmpeg ffmpeg  # Link conda ffmpeg to built in
+    
+    ```
+    More details in my post in issue [ OpenCV disabling libopenh264 for ffmpeg #131 [Github]](https://github.com/conda-forge/opencv-feedstock/issues/131#issuecomment-625259442)
