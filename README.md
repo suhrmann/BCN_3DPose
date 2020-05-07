@@ -92,7 +92,7 @@ Project Repository comes with:
     For other install options see [Install TensorFlow [tensorflow.org]](https://www.tensorflow.org/install)
     ```bash
     # Install Tensorflow 1(!)
-    conda install tensorflow==1.15 # Tensorflow 1
+    conda install tensorflow-gpu==1.15 # Tensorflow 1
     ```
 
 2. Install project dependencies
