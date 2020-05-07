@@ -101,7 +101,7 @@ Project Repository comes with:
     ```
 
 
-### FAQ
+# FAQ
 
  - **``ffmpeg`` missing** <br>
      Replace conda ``ffmpeg`` with built-in ``ffmpeg`` of Ubuntu
