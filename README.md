@@ -2,6 +2,9 @@
 Bayesian Capsule Networks for 3D human pose estimation from single 2D images
 https://www.sciencedirect.com/science/article/pii/S092523121931522X
 
+## Branch ``amass``
+Adjustments to test [BCN_3DPose](https://amass.is.tue.mpg.de) agains AMASS dataset. 
+
 ## Demo
 **_click on the image below for a video demo_**
 [![Watch the video](https://img.youtube.com/vi/cJsPnm-T9cA/maxresdefault.jpg)](https://youtu.be/cJsPnm-T9cA)
