@@ -103,17 +103,9 @@ Project Repository comes with:
 
 # FAQ
 
- - **``ffmpeg`` missing** <br>
-     Replace conda ``ffmpeg`` with built-in ``ffmpeg`` of Ubuntu
-     
-    ```bash
-    # "disable" conda ffmpeg 
-    which ffmpeg  # -> Output: /home/simon/.conda/envs/OpenCV/bin/ffmpeg
-    cd /home/simon/.conda/envs/OpenCV/bin
-    mv ffmpeg ffmpeg_BAK
-    # Replace with Ubuntu ffmpeg
-    which ffmpeg  # Expecting path to Ubuntu ffmpeg - Output: /usr/bin/ffmpeg
-    ln -s /usr/bin/ffmpeg ffmpeg  # Link conda ffmpeg to built in
+ - **``ffmpeg`` / h.264 support missing** <br>
+    If you got an error about missing h2.64 encoding you need to install ``opencv`` via with channel `conda-forge`.
+    The flag `-c conda-forge` does **not** resolve it. See doc of conda-forge how to add channel `conda-forge`: <br>
+    https://conda-forge.org/#about
     
-    ```
-    More details in my post in issue [ OpenCV disabling libopenh264 for ffmpeg #131 [Github]](https://github.com/conda-forge/opencv-feedstock/issues/131#issuecomment-625259442)
+    Mission h.264 discussion here at [ @conda-forge / opencv-feedstock [github] ](https://github.com/conda-forge/opencv-feedstock/issues/230#issuecomment-626216544)
