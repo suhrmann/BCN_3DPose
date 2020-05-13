@@ -29,6 +29,11 @@ BCN_3DPose
 │   ├── train_bg17
 │   ├── validation
 │   ├── validation_amass
+│   │   ├── 50002 -> ../AMASS/DFaust_Snythetic//DFaust67renders_singleframes/50002
+│   │   │   ├── 50002_chicken_wings_00000.jpg
+│   │   │   └──  . . .
+│   │   ├── 50004 -> ../AMASS/DFaust_Snythetic//DFaust67renders_singleframes/50004
+│   │   └──  . . . 
 │   ├── validation2d
 │   ├── validation2d_bb
 │   ├── validation_bg
@@ -52,7 +57,10 @@ BCN_3DPose
 
 ```
 
-**NOTE** The added directory `Data3D/validation_amass` that contains the extracted frames of the [AMASS dataset](https://amass.is.tue.mpg.de).
+**NOTE:** The added directory `Data3D/validation_amass` contains the extracted frames of each sample 
+         of the [AMASS dataset](https://amass.is.tue.mpg.de). 
+         Only dataset ``validation_amass/50002`` is indicated, representing the other 10 samples of dataset AMASS.
+
 
 
 ### Training

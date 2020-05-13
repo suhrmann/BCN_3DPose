@@ -895,7 +895,8 @@ class BCN:
             saver_cnn.restore(sess, self.checkpoint)
             angle = 0
 
-            images_in_dataset_path = self.data_dir + 'validation_amass'
+            DATASET_SAMPLE = '50002'
+            images_in_dataset_path = os.path.join(self.data_dir, 'validation_amass', DATASET_SAMPLE)  # Change directory here
             images_in_dataset = sorted(glob.glob(images_in_dataset_path + '/*.jpg'))
             num_images = len(images_in_dataset)
             if num_images == 0:
@@ -904,7 +905,7 @@ class BCN:
 
             print(f'[INFO]   Found {len(images_in_dataset)} images in dir "validation"')
 
-            with writer.saving(fig, "AMASS_Test_Video.mp4", 100):
+            with writer.saving(fig, "AMASS_Test_Video_" + DATASET_SAMPLE + ".mp4", 100):
 
                 progress_bar = tqdm(total=num_images, unit="frames")  # Initialise
                 for i, image_filename in enumerate(images_in_dataset):
