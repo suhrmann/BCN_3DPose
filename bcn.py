@@ -906,8 +906,8 @@ class BCN:
 
             with writer.saving(fig, "AMASS_Test_Video.mp4", 100):
 
+                progress_bar = tqdm(total=num_images, unit="frames")  # Initialise
                 for i, image_filename in enumerate(images_in_dataset):
-                    print(i)
                     if angle >= 360:
                         angle = 0
                     else:
@@ -998,5 +998,9 @@ class BCN:
                     writer.grab_frame()
                     # Nos quedamos solo con el primer canal y quitamos las dos dimensiones que no nos interesan (batch y canales) usando reshape
                     # We are left with only the first channel and remove the two dimensions that we are not interested in (batch and channels) using reshape (Google Translator)
+
+                    # Update progress bar
+                    progress_bar.update()
+
         sess.close()
         return 0
