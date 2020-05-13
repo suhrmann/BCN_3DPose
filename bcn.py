@@ -1,4 +1,6 @@
 # coding=utf-8
+import glob
+
 import tensorflow as tf
 import numpy as np
 
@@ -493,12 +495,12 @@ class BCN:
         return v_J, W_reg
 
     def squash(self, vector):
-        '''Squashing function corresponding to Eq. 1
+        """Squashing function corresponding to Eq. 1
         Args:
             vector: A 5-D tensor with shape [batch_size, 1, num_caps, vec_len, 1],
         Returns:
             A 5-D tensor with the same shape as vector but squashed in 4rd and 5th dimensions.
-        '''
+        """
         epsilon = 1e-9
         vec_squared_norm = tf.reduce_sum(tf.square(vector), -2, keep_dims=True)
         scalar_factor = vec_squared_norm / (1 + vec_squared_norm) / tf.sqrt(vec_squared_norm + epsilon)
@@ -892,9 +894,19 @@ class BCN:
             # Cargamos las variables
             saver_cnn.restore(sess, self.checkpoint)
             angle = 0
-            with writer.saving(fig, "S11_Sitting.mp4", 100):
 
-                for i in range(1, 3000):
+            images_in_dataset_path = self.data_dir + 'validation_amass'
+            images_in_dataset = glob.glob(images_in_dataset_path + '/*.jpg')
+            num_images = len(images_in_dataset)
+            if num_images == 0:
+                print('[ERROR] No images found in dataset "' + str(images_in_dataset_path) + "'")
+                exit(0)
+
+            print(f'[INFO]   Found {len(images_in_dataset)} images in dir "validation"')
+
+            with writer.saving(fig, "AMASS_Test_Video.mp4", 100):
+
+                for i, image_filename in enumerate(images_in_dataset):
                     print(i)
                     if angle >= 360:
                         angle = 0
@@ -902,12 +914,12 @@ class BCN:
                         angle = angle + 1
                     angle = 0
 
-                    image = cv2.imread(self.data_dir + 'validation/S11_Sitting 1.60457274_' + str(5 * i) + '.jpg')
-                    xyz_total_gt = np.load(self.data_dir + 'validation/S11_Sitting 1.60457274_' + str(5 * i) + '.npy')
+                    image = cv2.imread(os.path.join(images_in_dataset_path, image_filename))
+                    #xyz_total_gt = np.load(self.data_dir + 'validation/S11_Sitting 1.60457274_' + str(5 * i) + '.npy')
                     art_select_ = [0, 1, 2, 3, 6, 7, 8, 12, 13, 14, 15, 17, 18, 19, 25, 26, 27]
 
-                    xyz_total_gt = self.rotate(xyz_total_gt)
-                    xyz_total_gt = xyz_total_gt[art_select_, :]
+                    #xyz_total_gt = self.rotate(xyz_total_gt)
+                    #xyz_total_gt = xyz_total_gt[art_select_, :]
 
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                     image = np.array(Image.fromarray(image).resize([self.IM_ROWS, self.IM_COLS]))
@@ -952,6 +964,7 @@ class BCN:
 
                     ax2 = fig.add_subplot(133, projection='3d')
 
+                    """
                     xyz_total_gt = np.reshape(xyz_total_gt, (self.num_articulaciones, 3, 1))
                     bias = np.repeat(np.reshape(xyz_total_gt[0, :, 0], [1, 3]), self.num_articulaciones, axis=0)
                     xyz_total_gt = xyz_total_gt - np.reshape(bias, (self.num_articulaciones, 3, 1))
@@ -966,6 +979,7 @@ class BCN:
                                 P2 = xyz_total_gt[i, :].flatten()
                                 P1 = xyz_total_gt[child[j] - 1, :].flatten()
                                 ax2.plot([P1[0], P2[0]], [P1[1], P2[1]], zs=[P1[2], P2[2]])
+                    """
 
                     # ax1.scatter(xyz_total_gt[:, 0], xyz_total_gt[:, 1], xyz_total_gt[:, 2], s=3, c=None, depthshade=True)
                     ax2.set_xlabel('X Label')

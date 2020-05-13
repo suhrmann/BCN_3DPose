@@ -28,6 +28,7 @@ BCN_3DPose
 │   ├── train_bg
 │   ├── train_bg17
 │   ├── validation
+│   ├── validation_amass
 │   ├── validation2d
 │   ├── validation2d_bb
 │   ├── validation_bg
@@ -50,6 +51,9 @@ BCN_3DPose
     └── children.mat
 
 ```
+
+**NOTE** The added directory `Data3D/validation_amass` that contains the extracted frames of the [AMASS dataset](https://amass.is.tue.mpg.de).
+
 
 ### Training
 ```bash
