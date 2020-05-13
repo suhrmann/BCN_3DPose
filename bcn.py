@@ -887,7 +887,7 @@ class BCN:
         FFMpegWriter = manimation.writers['ffmpeg']
         metadata = dict(title='Movie Test', artist='Matplotlib',
                         comment='Movie support!')
-        writer = FFMpegWriter(fps=30, metadata=metadata)
+        writer = FFMpegWriter(fps=12, metadata=metadata)
         with tf.Session() as sess:
             sess.run(tf.global_variables_initializer())
             sess.run(tf.local_variables_initializer())
