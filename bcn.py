@@ -896,7 +896,7 @@ class BCN:
             angle = 0
 
             images_in_dataset_path = self.data_dir + 'validation_amass'
-            images_in_dataset = glob.glob(images_in_dataset_path + '/*.jpg')
+            images_in_dataset = sorted(glob.glob(images_in_dataset_path + '/*.jpg'))
             num_images = len(images_in_dataset)
             if num_images == 0:
                 print('[ERROR] No images found in dataset "' + str(images_in_dataset_path) + "'")
